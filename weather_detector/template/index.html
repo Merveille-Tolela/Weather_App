@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>weather</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!-- Custom Styling -->
+  <style>
+    /* Cloudy background pattern */
+    body {
+      background: url('https://www.transparenttextures.com/patterns/cloudy-day.png') repeat;
+      background-size: cover;
+      font-family: 'Helvetica', sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation bar */
+    nav {
+      padding: 20px 0;
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+      color: white !important;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    nav h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Cloud icon */
+    .cloud-icon {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .cloud-icon img {
+      width: 120px;
+    }
+
+    /* Form styling */
+    form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input.form-control {
+      border-radius: 4px 0 0 4px;
+      border: 1px solid #ccc;
+    }
+
+    .input-group-btn .btn {
+      border-radius: 0 4px 4px 0;
+      background-color: #6dd5ed;
+      border-color: #6dd5ed;
+      color: white;
+    }
+
+    /* Weather result */
+    .col-md-6.col-md-offset-3 h1,
+    .col-md-6.col-md-offset-3 h3,
+    .col-md-6.col-md-offset-3 h5 {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .col-md-6.col-md-offset-3 h1 {
+      font-size: 32px;
+      color: #333;
+    }
+
+    .col-md-6.col-md-offset-3 h3 {
+      font-size: 24px;
+      color: #555;
+    }
+
+    .col-md-6.col-md-offset-3 h5 {
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="row" style="background: grey; color: white;">
+    <div align="center">
+      <h1 class="col-md-3 text-center">Weather Detector</h1>
+    </div>
+  </nav>
+
+  <!-- Cloud Icon -->
+  <div class="cloud-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/414/414825.png" alt="Cloud">
+  </div>
+
+  <br />
+  <br />
+  <center class="row">
+    <form action="" method="post" class="col-md-6 col-md-offset-3">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+        <form>
+  </center>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      {% if data.humidity %}
+      <h1>{{city|capfirst}}</h1>
+      <h3>country code : {{data.country_code}}</h3>
+      <h5>coordinate : {{data.coordinate}}</h5>
+      <h5>temp : {{data.temp}}</h5>
+      <h5>pressure : {{data.pressure}}</h5>
+      <h5>humidity : {{data.humidity}}</h5>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
